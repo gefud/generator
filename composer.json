@@ -2,6 +2,9 @@
     "name": "gefud/generator",
     "description": "Gefud PHP Class Generator",
     "require-dev": {
+        "phing/phing": "*",
+        "phpspec/phpspec": "*",
+        "behat/behat": "~2.5",
         "doctrine/annotations": "~1.1"
     },
     "license": "MIT",
@@ -14,7 +17,12 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-0": {
-            "Gefud\\Generator\\": "src/"
+            "": "src/"
         }
+    },
+    "config": 
+    {
+        "vendor-dir": "vendor/",
+        "bin-dir": "bin/"
     }
 }

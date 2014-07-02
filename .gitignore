@@ -1,0 +1,10 @@
+.idea
+build/coverage
+build/logs
+build/docs
+bin/behat
+bin/phing
+bin/phpspec
+vendor
+composer.lock
+composer.phar
