@@ -1,0 +1,20 @@
+{
+    "name": "gefud/generator",
+    "description": "Gefud PHP Class Generator",
+    "require-dev": {
+        "doctrine/annotations": "~1.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michał Brzuchalski",
+            "email": "michal.brzuchalski@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "Gefud\\Generator\\": "src/"
+        }
+    }
+}
