@@ -1,1 +1,4 @@
 formatter.name: pretty
+suites:
+    main:
+        namespace: Gefud\Generator

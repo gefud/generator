@@ -34,7 +34,7 @@ class ClassDefinition extends DefinitionGenerator
 //        $annotationReader->setEnabledPhpImports(true);
 //        $classAnnotations = $annotationReader->getClassAnnotations($classReflection);
 
-        $definition = new ClassDefinition($classReflection->getShortName(), $classReflection->getNamespaceName());
+        $definition = new self($classReflection->getShortName(), $classReflection->getNamespaceName());
         $parentClass = $classReflection->getParentClass();
         if ($parentClass instanceof ReflectionClass) {
             if ($parentClass instanceof ReflectionClass) {
@@ -49,7 +49,7 @@ class ClassDefinition extends DefinitionGenerator
         }
         /* @var ReflectionProperty $property */
         foreach ($classReflection->getProperties() as $property) {
-            $definition->addPproperty(PropertyDefinition::createFrom($property));
+            $definition->addProperty(PropertyDefinition::createFrom($property));
         }
         /* @var ReflectionMethod $method */
         foreach ($classReflection->getMethods() as $method) {
@@ -63,11 +63,6 @@ class ClassDefinition extends DefinitionGenerator
     {
         $this->name = $name;
         $this->namespace = $namespace;
-    }
-
-    public function getName()
-    {
-        return $this->name;
     }
 
     public function setExtends(ClassDefinition $extends)
@@ -88,5 +83,23 @@ class ClassDefinition extends DefinitionGenerator
     public function addMethod(MethodDefinition $method)
     {
         $this->methods[$method->getName()] = $method;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getNamespace()
+    {
+        return $this->namespace;
+    }
+
+    public function getMethod($methodName)
+    {
+//        var_dump($methodName);
+        if (true === array_key_exists($methodName, $this->methods)) {
+            return $this->methods[$methodName];
+        }
     }
 }

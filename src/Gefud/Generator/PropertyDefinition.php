@@ -5,7 +5,7 @@ class PropertyDefinition extends DefinitionGenerator
 {
     public static function createFrom($from)
     {
-        $definition = new MethodDefinition();
+        $definition = new self();
 
         return $definition;
     }

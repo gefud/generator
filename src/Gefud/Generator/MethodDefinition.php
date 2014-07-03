@@ -5,13 +5,23 @@ class MethodDefinition extends DefinitionGenerator
 {
     public static function createFrom($from)
     {
-        $definition = new MethodDefinition();
+        if ($from instanceof \ReflectionMethod) {
+            $methodReflection = $from;
+        } else {
+            throw new InvalidArgumentException("Couldn't reflect class: $from");
+        }
+        $definition = new self($methodReflection->getName());
 
         return $definition;
     }
     
     public function getName()
     {
-        // TODO: fill
+        return $this->name;
     }
-} 
+
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+}
