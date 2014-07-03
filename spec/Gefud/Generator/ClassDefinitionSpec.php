@@ -13,6 +13,9 @@ class ClassDefinitionSpec extends ObjectBehavior
 {
     const VALID_CLASSNAME = 'Employee';
     const VALID_NAMESPACE = 'Test';
+    const VALID_METHODNAME = 'getName';
+    const VALID_PROPERTYNAME = 'name';
+    const VALID_PROPERTYTYPE = 'int';
 
     function let(
         PropertyDefinition $propertyName,
@@ -22,12 +25,12 @@ class ClassDefinitionSpec extends ObjectBehavior
         $this->beConstructedWith(self::VALID_CLASSNAME, self::VALID_NAMESPACE);
 
         $propertyName->beConstructedWith([
-            'name',
-            'int',
+            self::VALID_PROPERTYNAME,
+            self::VALID_PROPERTYTYPE,
         ]);
 
         $methodGetName->beConstructedWith([
-            'getName',
+            self::VALID_METHODNAME,
         ]);
         $methodGetName->getName()->willReturn('getName');
     }
@@ -61,7 +64,7 @@ class ClassDefinitionSpec extends ObjectBehavior
     function it_add_method_definitions(MethodDefinition $methodGetName)
     {
         $this->addMethod($methodGetName);
-        // TODO: check why getName() returns prophecy not string "getName"
-        //$this->getMethod($methodGetName->getName())->shouldReturn($methodGetName);
+        $this->getMethod(self::VALID_METHODNAME)->shouldReturn($methodGetName);
     }
+
 }
