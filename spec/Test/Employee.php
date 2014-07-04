@@ -8,11 +8,11 @@ namespace Test;
 class Employee
 {
     /**
-     * @var string
+     * @var string Employee name
      */
     public $name = '';
     /**
-     * @var array
+     * @var array Employee data
      */
     private $data = [];
 

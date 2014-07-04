@@ -10,11 +10,5 @@ namespace Gefud\Generator;
 
 interface Definition
 {
-    public function generate()
-    {
-        $definition = $this->create();
-        $dumper = new FileDumper($definition);
-
-        return $dumper->dump();
-    }
+    public static function createFrom($from);
 } 

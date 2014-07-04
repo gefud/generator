@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\Gefud\Generator;
+namespace spec\Gefud\Generator\Definitions;
 
-use Gefud\Generator\DocBlockDefinition;
+use Gefud\Generator\Definitions\DocBlockDefinition;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

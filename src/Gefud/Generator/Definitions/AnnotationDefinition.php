@@ -1,7 +1,10 @@
 <?php
-namespace Gefud\Generator;
+namespace Gefud\Generator\Definitions;
 
-class AnnotationDefinition extends Definition implements Annotation
+use Gefud\Generator\Annotation;
+use Gefud\Generator\Definition;
+
+class AnnotationDefinition implements Definition, Annotation
 {
     const ANNOTATION_PATTERN = '/@(?<token>[^@]+)\s+(?<fragments>[^@]+)?(\n|$)/sU';
     const ANNOTATION_CLASS_PATTERN = "\\Gefud\\Generator\\Annotations\\%sAnnotationDefinition";

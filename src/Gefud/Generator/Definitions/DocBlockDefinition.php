@@ -1,7 +1,9 @@
 <?php
-namespace Gefud\Generator;
+namespace Gefud\Generator\Definitions;
 
-class DocBlockDefinition extends DefinitionGenerator
+use Gefud\Generator\Definition;
+
+class DocBlockDefinition implements Definition
 {
     const LEFT_PATTERN = '/^(\/[\*]+\s*\n\s+\*\s)/sU';
     const RIGHT_PATTERN = '/(\s+[\*]+\/)$/sU';

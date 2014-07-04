@@ -1,15 +1,16 @@
 <?php
-namespace Gefud\Generator;
+namespace Gefud\Generator\Definitions;
 
+use Gefud\Generator\Definition;
+use Gefud\Generator\NamedDefinition;
 use ReflectionClass;
 use InvalidArgumentException;
-use Doctrine\Common\Annotation\AnnotationReader;
 
 /**
  * Class ClassDefinition
  * @package Gefud\Generator
  */
-class ClassDefinition extends DefinitionGenerator implements NamedDefinition
+class ClassDefinition implements Definition, NamedDefinition
 {
     /**
      * @var string Class short name

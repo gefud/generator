@@ -1,11 +1,14 @@
 <?php
-namespace Gefud\Generator;
+namespace Gefud\Generator\Definitions;
+
+use Gefud\Generator\Definition;
+use Gefud\Generator\NamedDefinition;
 
 /**
  * Class MethodDefinition
- * @package Gefud\Generator
+ * @package Gefud\Generator\Definitions
  */
-class MethodDefinition extends DefinitionGenerator implements NamedDefinition
+class MethodDefinition implements Definition, NamedDefinition
 {
     /**
      * @var string Method name

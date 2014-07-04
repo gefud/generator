@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Gefud\Generator;
+namespace spec\Gefud\Generator\Definitions;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

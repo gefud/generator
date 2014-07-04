@@ -1,11 +1,14 @@
 <?php
-namespace Gefud\Generator;
+namespace Gefud\Generator\Definitions;
+
+use Gefud\Generator\Definition;
+use Gefud\Generator\NamedDefinition;
 
 /**
  * Class PropertyDefinition
  * @package Gefud\Generator
  */
-class PropertyDefinition extends DefinitionGenerator implements NamedDefinition
+class PropertyDefinition implements Definition, NamedDefinition
 {
     /**
      * @var string Property name

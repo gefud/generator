@@ -9,7 +9,8 @@
 namespace Gefud\Generator\Chunks;
 
 
-use Gefud\Generator\PropertyDefinition;
+use Gefud\Generator\Chunk;
+use Gefud\Generator\Definitions\PropertyDefinition;
 
 class ValuePropertyChunk implements Chunk
 {
@@ -17,7 +18,7 @@ class ValuePropertyChunk implements Chunk
     %s $%s = %s;
 EOF;
 
-    private $property;
+    protected $property;
 
     public function __construct(PropertyDefinition $property)
     {
@@ -26,6 +27,6 @@ EOF;
 
     public function __toString()
     {
-        return sprintf(self::PATTERN, $this->property->getName(), $this->property->exportValue());
+        return sprintf(self::PATTERN, $this->property->getVisibility(), $this->property->getName(), $this->property->exportValue());
     }
 } 

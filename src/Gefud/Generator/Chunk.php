@@ -1,9 +1,9 @@
 <?php
-namespace Gefud\Generator\Chunks;
+namespace Gefud\Generator;
 
 /**
  * Interface Chunk
- * @package Gefud\Generator\Chunks
+ * @package Gefud\Generator
  */
 interface Chunk
 {

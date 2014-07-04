@@ -1,11 +1,51 @@
 <?php
+namespace Gefud\Generator\Annotations;
+
+use Gefud\Generator\Definitions\AnnotationDefinition;
+
 /**
- * Created by PhpStorm.
- * User: mbrzuchalski
- * Date: 03.07.14
- * Time: 22:06
+ * Class VarAnnotationDefinition
+ * @package Gefud\Generator\Annotations
  */
+class VarAnnotationDefinition extends AnnotationDefinition
+{
+    private $type;
+    private $description;
 
-class VarAnnotationDefinition {
+    /**
+     * Variable annotation definition constructor
+     * @param array $fragments Annotation fragments
+     */
+    public function __construct(array $fragments)
+    {
+        $this->type = array_shift($fragments);
+        $this->description = implode(' ', $fragments);
+    }
 
-} 
+    /**
+     * Get variable type
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Get variable description
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Get annotation token
+     * @return string
+     */
+    public function getToken()
+    {
+        return 'var';
+    }
+}

@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\Gefud\Generator;
+namespace spec\Gefud\Generator\Definitions;
 
-require_once __DIR__ . '/../../Test/Employee.php';
+require_once __DIR__ . '/../../../Test/Employee.php';
 
-use Gefud\Generator\MethodDefinition;
+use Gefud\Generator\Definitions\MethodDefinition;
+use Gefud\Generator\Definitions\PropertyDefinition;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Gefud\Generator\PropertyDefinition;
 
 class ClassDefinitionSpec extends ObjectBehavior
 {
@@ -38,7 +38,7 @@ class ClassDefinitionSpec extends ObjectBehavior
     function it_generates_class_definition_object_from_class_name()
     {
         $prophecy = self::createFrom(self::VALID_NAMESPACE . '\\' . self::VALID_CLASSNAME);
-        $prophecy->shouldHaveType('Gefud\Generator\ClassDefinition');
+        $prophecy->shouldHaveType('Gefud\Generator\Definitions\ClassDefinition');
     }
 
     function it_can_return_valid_class_name()
