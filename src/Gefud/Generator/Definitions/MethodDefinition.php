@@ -2,36 +2,36 @@
 namespace Gefud\Generator;
 
 /**
- * Class PropertyDefinition
+ * Class MethodDefinition
  * @package Gefud\Generator
  */
-class PropertyDefinition extends DefinitionGenerator
+class MethodDefinition extends DefinitionGenerator implements NamedDefinition
 {
     /**
-     * @var string Property name
+     * @var string Method name
      */
     private $name;
 
     /**
-     * Property definition creation from ReflectionProperty
-     * @param ReflectionProperty $from Property reflection instance
-     * @return PropertyDefinition
+     * Method definition creation from ReflectionMethod
+     * @param ReflectionMethod $from Method reflection instance
+     * @return MethodDefinition
      * @throws InvalidArgumentException
      */
     public static function createFrom($from)
     {
-        if ($from instanceof \ReflectionProperty) {
-            $propertyReflection = $from;
+        if ($from instanceof \ReflectionMethod) {
+            $methodReflection = $from;
         } else {
             throw new InvalidArgumentException("Couldn't reflect class: $from");
         }
-        $definition = new self($propertyReflection->getName());
+        $definition = new self($methodReflection->getName());
 
         return $definition;
     }
 
     /**
-     * Get property name
+     * Get method name
      * @return string
      */
     public function getName()
@@ -40,8 +40,8 @@ class PropertyDefinition extends DefinitionGenerator
     }
 
     /**
-     * Property definition constructor
-     * @param string $name Property name
+     * Method definition constructor
+     * @param string $name Method name
      */
     public function __construct($name)
     {

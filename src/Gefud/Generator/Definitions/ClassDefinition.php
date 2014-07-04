@@ -9,7 +9,7 @@ use Doctrine\Common\Annotation\AnnotationReader;
  * Class ClassDefinition
  * @package Gefud\Generator
  */
-class ClassDefinition extends DefinitionGenerator
+class ClassDefinition extends DefinitionGenerator implements NamedDefinition
 {
     /**
      * @var string Class short name
@@ -75,10 +75,6 @@ class ClassDefinition extends DefinitionGenerator
         } else {
             throw new InvalidArgumentException("Couldn't reflect class: $from");
         }
-//        $annotationReader = new AnnotationReader();
-//        $annotationReader->setEnabledPhpImports(true);
-//        $classAnnotations = $annotationReader->getClassAnnotations($classReflection);
-
         $definition = new self($classReflection->getShortName(), $classReflection->getNamespaceName());
         $parentClass = $classReflection->getParentClass();
         if ($parentClass instanceof ReflectionClass) {

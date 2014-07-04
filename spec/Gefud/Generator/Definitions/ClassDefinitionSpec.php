@@ -35,11 +35,6 @@ class ClassDefinitionSpec extends ObjectBehavior
         $methodGetName->getName()->willReturn('getName');
     }
 
-    function it_is_initializable()
-    {
-        $this->shouldHaveType('Gefud\Generator\ClassDefinition');
-    }
-
     function it_generates_class_definition_object_from_class_name()
     {
         $prophecy = self::createFrom(self::VALID_NAMESPACE . '\\' . self::VALID_CLASSNAME);

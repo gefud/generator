@@ -14,11 +14,6 @@ class MethodDefinitionSpec extends ObjectBehavior
         $this->beConstructedWith(self::VALID_METHODNAME);
     }
 
-    function it_is_initializable()
-    {
-        $this->shouldHaveType('Gefud\Generator\MethodDefinition');
-    }
-
     function it_can_return_valid_methodname()
     {
         $this->getName()->shouldReturn(self::VALID_METHODNAME);
