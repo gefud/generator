@@ -26,4 +26,9 @@ class VarAnnotationDefinitionSpec extends ObjectBehavior
     {
         $this->getToken()->shouldReturn('var');
     }
+
+    function it_returns_var_annotation_text_on_getText()
+    {
+        $this->getText()->shouldReturn('@var integer Integer property description');
+    }
 }

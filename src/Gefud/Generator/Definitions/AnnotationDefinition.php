@@ -37,4 +37,9 @@ class AnnotationDefinition implements Definition, Annotation
         $this->token = $token;
         $this->fragments = $fragments;
     }
+
+    public function getText()
+    {
+        // TODO: implement universal annotation text generation
+    }
 }

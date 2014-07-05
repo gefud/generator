@@ -24,4 +24,16 @@ class PropertyDefinitionSpec extends ObjectBehavior
     {
         $this->setDocBlock(DocBlockDefinition::createFrom("/**\n     * @var integer Property description\n     */"));
     }
+
+    function it_returns_docblock_when_set()
+    {
+        $this->setDocBlock(DocBlockDefinition::createFrom("/**\n     * @var integer Property description\n     */"));
+        $this->getDocBlock()->shouldHaveType('\Gefud\Generator\Definitions\DocBlockDefinition');
+    }
+
+    function it_returns_property_text_on_getText()
+    {
+        $this->setDocBlock(DocBlockDefinition::createFrom("/**\n     * @var integer Property description\n     */"));
+        $this->getText()->shouldReturn("    /**\n     * @var integer Property description\n     */\n    private \$name;\n");
+    }
 }

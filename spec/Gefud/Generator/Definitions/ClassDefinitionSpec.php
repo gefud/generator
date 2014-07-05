@@ -62,4 +62,10 @@ class ClassDefinitionSpec extends ObjectBehavior
         $this->getMethod(self::VALID_METHODNAME)->shouldReturn($methodGetName);
     }
 
+    function it_returns_property_text_on_getText()
+    {
+        //$this->isAbstract()->willReturn(false);
+        //$this->setDocBlock(DocBlockDefinition::createFrom("/**\n     * @var integer Property description\n     */"));
+        $this->getText()->shouldReturn("    /**\n     * @var integer Property description\n     */\n    private \$name;\n");
+    }
 }

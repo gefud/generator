@@ -1,6 +1,7 @@
 <?php
 namespace Gefud\Generator\Annotations;
 
+use Gefud\Generator\Annotations\Chunks\VarAnnotationChunk;
 use Gefud\Generator\Definitions\AnnotationDefinition;
 
 /**
@@ -47,5 +48,11 @@ class VarAnnotationDefinition extends AnnotationDefinition
     public function getToken()
     {
         return 'var';
+    }
+
+    public function getText()
+    {
+        $chunk = new VarAnnotationChunk($this);
+        return $chunk->getText();
     }
 }

@@ -2,6 +2,7 @@
 namespace Gefud\Generator\Definitions;
 
 use Gefud\Generator\Definition;
+use Gefud\Generator\Definitions\Chunks\ClassChunk;
 use Gefud\Generator\NamedDefinition;
 use ReflectionClass;
 use InvalidArgumentException;
@@ -176,5 +177,16 @@ class ClassDefinition implements Definition, NamedDefinition
         if (true === array_key_exists($methodName, $this->methods)) {
             return $this->methods[$methodName];
         }
+    }
+
+    public function getText()
+    {
+        $chunk = new ClassChunk($this);
+        return $chunk->getText();
+    }
+
+    public function isAbstract()
+    {
+        return false; // TODO: write logic here
     }
 }

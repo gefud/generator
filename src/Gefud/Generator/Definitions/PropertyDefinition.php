@@ -1,7 +1,10 @@
 <?php
 namespace Gefud\Generator\Definitions;
 
+use Gefud\Generator\Annotations\VarAnnotationDefinition;
 use Gefud\Generator\Definition;
+use Gefud\Generator\Definitions\Chunks\NullValuePropertyChunk;
+use Gefud\Generator\Definitions\Chunks\ValuePropertyChunk;
 use Gefud\Generator\NamedDefinition;
 
 /**
@@ -94,8 +97,62 @@ class PropertyDefinition implements Definition, NamedDefinition
         return $this->visibility;
     }
 
+    /**
+     * Set property docblock definition
+     * @param DocBlockDefinition $docblock
+     */
     public function setDocBlock(DocBlockDefinition $docblock)
     {
         $this->docblock = $docblock;
     }
+
+    /**
+     * Get property type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Get property value
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Get property docblock definition
+     * @return DocBlockDefinition
+     */
+    public function getDocBlock()
+    {
+        if ($this->docblock instanceof DocBlockDefinition) {
+            return $this->docblock;
+        } else {
+            $name = ucfirst($this->getName());
+            $annotation = new VarAnnotationDefinition($this->getType(), $name);
+            $docblock = new DocBlockDefinition(null, [$annotation]);
+            return $docblock;
+        }
+    }
+
+    /**
+     * Get definition text
+     * @return string
+     */
+    public function getText()
+    {
+        $docblock = $this->getDocBlock();
+        if (is_null($this->getValue())) {
+            $chunk = new NullValuePropertyChunk($this, $docblock);
+        } else {
+            $chunk = new ValuePropertyChunk($this, $docblock);
+        }
+        return $chunk->getText();
+    }
+
 }

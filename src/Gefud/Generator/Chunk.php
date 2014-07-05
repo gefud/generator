@@ -11,5 +11,5 @@ interface Chunk
      * Get compiled chunk text
      * @return string
      */
-    public function __toString();
+    public function getText();
 } 
