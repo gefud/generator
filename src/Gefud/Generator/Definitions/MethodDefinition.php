@@ -50,4 +50,12 @@ class MethodDefinition implements Definition, NamedDefinition
     {
         $this->name = $name;
     }
+
+    /**
+     * Get method text
+     */
+    public function getText()
+    {
+        // TODO: implement
+    }
 }

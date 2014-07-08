@@ -5,7 +5,7 @@ use Gefud\Generator\Chunk;
 use Gefud\Generator\Definitions\AnnotationDefinition;
 use Gefud\Generator\Definitions\DocBlockDefinition;
 
-class DocBlockWithDescriptionChunk extends DocBlockWithoutDescription
+class DocBlockWithDescriptionChunkChunk extends DocBlockWithoutDescriptionChunk
 {
     public function getText()
     {

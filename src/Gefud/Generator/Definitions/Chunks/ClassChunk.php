@@ -22,15 +22,11 @@ EOF;
 
     public function getText()
     {
-        echo sprintf(self::PATTERN,
+        $classBody = sprintf(self::PATTERN,
             $this->definition->isAbstract() ? 'abstract ' : null,
             $this->definition->getName(),
             '// TODO: implement'
         );
-        return sprintf(self::PATTERN,
-            $this->definition->isAbstract() ? 'abstract ' : null,
-            $this->definition->getName(),
-            '// TODO: implement'
-        );
+        return $classBody;
     }
 }

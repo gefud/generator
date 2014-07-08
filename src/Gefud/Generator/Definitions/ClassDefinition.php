@@ -80,9 +80,7 @@ class ClassDefinition implements Definition, NamedDefinition
         $definition = new self($classReflection->getShortName(), $classReflection->getNamespaceName());
         $parentClass = $classReflection->getParentClass();
         if ($parentClass instanceof ReflectionClass) {
-            if ($parentClass instanceof ReflectionClass) {
-                $definition->setExtends(ClassDefinition::createFrom($parentClass));
-            }
+            $definition->setExtends(ClassDefinition::createFrom($parentClass));
         }
         /* @var ReflectionClass $interface */
         foreach ($classReflection->getInterfaces() as $interface) {
@@ -188,5 +186,10 @@ class ClassDefinition implements Definition, NamedDefinition
     public function isAbstract()
     {
         return false; // TODO: write logic here
+    }
+
+    public function getImports()
+    {
+
     }
 }

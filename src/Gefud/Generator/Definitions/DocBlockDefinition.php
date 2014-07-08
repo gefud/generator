@@ -2,8 +2,8 @@
 namespace Gefud\Generator\Definitions;
 
 use Gefud\Generator\Definition;
-use Gefud\Generator\Definitions\Chunks\DocBlockWithDescriptionChunk;
-use Gefud\Generator\Definitions\Chunks\DocBlockWithoutDescription;
+use Gefud\Generator\Definitions\Chunks\DocBlockWithDescriptionChunkChunk;
+use Gefud\Generator\Definitions\Chunks\DocBlockWithoutDescriptionChunk;
 
 /**
  * Class DocBlockDefinition
@@ -127,9 +127,9 @@ class DocBlockDefinition implements Definition
     public function getText()
     {
         if (is_null($this->getDescription())) {
-            $chunk = new DocBlockWithoutDescription($this);
+            $chunk = new DocBlockWithoutDescriptionChunk($this);
         } else {
-            $chunk = new DocBlockWithDescriptionChunk($this);
+            $chunk = new DocBlockWithDescriptionChunkChunk($this);
         }
         return $chunk->getText();
     }

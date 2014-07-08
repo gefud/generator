@@ -66,6 +66,18 @@ class ClassDefinitionSpec extends ObjectBehavior
     {
         //$this->isAbstract()->willReturn(false);
         //$this->setDocBlock(DocBlockDefinition::createFrom("/**\n     * @var integer Property description\n     */"));
-        $this->getText()->shouldReturn("    /**\n     * @var integer Property description\n     */\n    private \$name;\n");
+        $this->getText()->shouldReturn(<<<EOF
+class Employee
+{
+    // TODO: implement
+}
+
+EOF
+);
+    }
+
+    function it_returns_import_namespaces()
+    {
+        $this->getImports()->shouldHaveType('Gefud\Generator\Definitions\Import');
     }
 }

@@ -4,7 +4,7 @@ namespace Gefud\Generator\Definitions\Chunks;
 use Gefud\Generator\Chunk;
 use Gefud\Generator\Definitions\DocBlockDefinition;
 
-class DocBlockWithoutDescription implements Chunk
+class DocBlockWithoutDescriptionChunk implements Chunk
 {
     const PATTERN = "    /**\n     * %s\n     */\n";
     /**
