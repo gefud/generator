@@ -3,9 +3,12 @@ namespace Gefud\Generator\Definitions;
 
 use Gefud\Generator\Definition;
 use Gefud\Generator\Definitions\Chunks\ClassChunk;
+use Gefud\Generator\Import;
 use Gefud\Generator\NamedDefinition;
 use ReflectionClass;
 use InvalidArgumentException;
+use ReflectionMethod;
+use ReflectionProperty;
 
 /**
  * Class ClassDefinition
@@ -177,19 +180,71 @@ class ClassDefinition implements Definition, NamedDefinition
         }
     }
 
+    /**
+     * Get class definition text
+     * @return string
+     */
     public function getText()
     {
         $chunk = new ClassChunk($this);
         return $chunk->getText();
     }
 
+    /**
+     * Check if dlass is abstract
+     * @return bool
+     */
     public function isAbstract()
     {
         return false; // TODO: write logic here
     }
 
-    public function getImports()
+    /**
+     * Get imports instance
+     * @param Import $imports
+     * @return Import
+     */
+    public function getImports(Import $imports = null)
     {
-
+        $className = new ClassNameDefinition($this->getName(), $this->getNamespace());
+        $excluded = [$className];
+        if (!($imports instanceof Import)) {
+            $imports = new Import($excluded);
+        } else {
+            $imports->addExcludedClassName($className);
+        }
+        /** @var MethodDefinition $method */
+        foreach ($this->getMethods() as $method) {
+            $method->getImports($imports);
+        }
+        /** @var PropertyDefinition $property */
+        foreach ($this->getProperties() as $property) {
+            if (!$property->isScalar()) {
+                $propertyType = $property->getType();
+                if ($propertyType instanceof ClassNameDefinition) {
+                    $imports->addClassName($propertyType);
+                }
+            }
+        }
+        return $imports;
     }
+
+    /**
+     * Get method definition array
+     * @return array
+     */
+    public function getMethods()
+    {
+        return $this->methods;
+    }
+
+    /**
+     * Get class definition property array
+     * @return array
+     */
+    private function getProperties()
+    {
+        return $this->properties;
+    }
+
 }

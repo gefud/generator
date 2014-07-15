@@ -2,7 +2,10 @@
 namespace Gefud\Generator\Definitions;
 
 use Gefud\Generator\Definition;
+use Gefud\Generator\Import;
 use Gefud\Generator\NamedDefinition;
+use InvalidArgumentException;
+use ReflectionMethod;
 
 /**
  * Class MethodDefinition
@@ -14,6 +17,14 @@ class MethodDefinition implements Definition, NamedDefinition
      * @var string Method name
      */
     private $name;
+    /**
+     * @var array Method definition arguments
+     */
+    private $arguments;
+    /**
+     * @var string Method definition visibility
+     */
+    private $visibility;
 
     /**
      * Method definition creation from ReflectionMethod
@@ -45,10 +56,12 @@ class MethodDefinition implements Definition, NamedDefinition
     /**
      * Method definition constructor
      * @param string $name Method name
+     * @param string $visibility Method visibility
      */
-    public function __construct($name)
+    public function __construct($name, $visibility = 'private')
     {
         $this->name = $name;
+        $this->visibility = $visibility;
     }
 
     /**
@@ -57,5 +70,54 @@ class MethodDefinition implements Definition, NamedDefinition
     public function getText()
     {
         // TODO: implement
+    }
+
+    /**
+     * Add method definition argument
+     * @param ArgumentDefinition $argument Argument definition to add
+     */
+    public function addArgument(ArgumentDefinition $argument)
+    {
+        $this->arguments[] = $argument;
+    }
+
+    /**
+     * Get method definition arguments
+     * @return array
+     */
+    public function getArguments()
+    {
+        return $this->arguments;
+    }
+
+    /**
+     * Get class names import
+     * @param Import $imports Import instance where to push class names
+     * @return Import
+     */
+    public function getImports(Import $imports = null)
+    {
+        if (!($imports instanceof Import)) {
+            $imports = new Import();
+        }
+        /** @var ArgumentDefinition $argument */
+        foreach ($this->getArguments() as $argument) {
+            if (!$argument->isScalar()) {
+                $argumentType = $argument->getType();
+                if ($argumentType instanceof ClassNameDefinition) {
+                    $imports->addClassName($argumentType);
+                }
+            }
+        }
+        return $imports;
+    }
+
+    /**
+     * Get method visibility
+     * @return string
+     */
+    public function getVisibility()
+    {
+        return $this->visibility;
     }
 }

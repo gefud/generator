@@ -94,7 +94,7 @@ class DocBlockDefinition implements Definition
      */
     public function hasAnnotations($token)
     {
-        /** @var Annotation $annotation */
+        /** @var AnnotationDefinition $annotation */
         foreach ($this->annotations as $annotation) {
             if ($token === $annotation->getToken()) {
                 return true;
@@ -111,7 +111,7 @@ class DocBlockDefinition implements Definition
     public function getAnnotations($token = false)
     {
         $results = [];
-        /** @var Annotation $annotation */
+        /** @var AnnotationDefinition $annotation */
         foreach ($this->annotations as $annotation) {
             if ($token === false || $token === $annotation->getToken()) {
                 $results[] = $annotation;

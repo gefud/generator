@@ -2,29 +2,17 @@
 namespace Gefud\Generator\Definitions;
 
 use Gefud\Generator\Annotations\VarAnnotationDefinition;
-use Gefud\Generator\Definition;
 use Gefud\Generator\Definitions\Chunks\NullValuePropertyChunk;
 use Gefud\Generator\Definitions\Chunks\ValuePropertyChunk;
-use Gefud\Generator\NamedDefinition;
+use InvalidArgumentException;
+use ReflectionProperty;
 
 /**
  * Class PropertyDefinition
  * @package Gefud\Generator
  */
-class PropertyDefinition implements Definition, NamedDefinition
+class PropertyDefinition extends VariableDefinition
 {
-    /**
-     * @var string Property name
-     */
-    private $name;
-    /**
-     * @var string Property type
-     */
-    private $type;
-    /**
-     * @var mixed Property value
-     */
-    private $value;
     /**
      * @var string Property visibility
      */
@@ -56,15 +44,6 @@ class PropertyDefinition implements Definition, NamedDefinition
     }
 
     /**
-     * Get property name
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Property definition constructor
      * @param string $name Property name
      * @param string $type Property type
@@ -73,19 +52,8 @@ class PropertyDefinition implements Definition, NamedDefinition
      */
     public function __construct($name, $type = 'unknown', $value = null, $visibility = 'private')
     {
-        $this->name = $name;
-        $this->type = $type;
-        $this->value = $value;
+        parent::__construct($name, $type, $value);
         $this->visibility = $visibility;
-    }
-
-    /**
-     * Exports property value as string
-     * @return string
-     */
-    public function exportValue()
-    {
-        return var_export($this->value, true);
     }
 
     /**
@@ -104,24 +72,6 @@ class PropertyDefinition implements Definition, NamedDefinition
     public function setDocBlock(DocBlockDefinition $docblock)
     {
         $this->docblock = $docblock;
-    }
-
-    /**
-     * Get property type
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Get property value
-     * @return mixed
-     */
-    public function getValue()
-    {
-        return $this->value;
     }
 
     /**

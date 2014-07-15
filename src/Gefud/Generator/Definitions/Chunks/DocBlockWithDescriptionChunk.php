@@ -1,9 +1,7 @@
 <?php
 namespace Gefud\Generator\Definitions\Chunks;
 
-use Gefud\Generator\Chunk;
 use Gefud\Generator\Definitions\AnnotationDefinition;
-use Gefud\Generator\Definitions\DocBlockDefinition;
 
 class DocBlockWithDescriptionChunkChunk extends DocBlockWithoutDescriptionChunk
 {

@@ -56,5 +56,7 @@ class ImportSpec extends ObjectBehavior
         $this->addExcludedClassName($excludedClassName);
         $this->addClassName($className);
         $this->getClassNames()->shouldReturn([$className]);
+        $this->getClassNames()->shouldReturn([$className]);
+        $this->getClassNames()->shouldReturn([$className]);
     }
 }

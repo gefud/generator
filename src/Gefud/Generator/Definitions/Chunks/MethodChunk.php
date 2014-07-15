@@ -2,7 +2,7 @@
 namespace Gefud\Generator\Definitions\Chunks;
 
 use Gefud\Generator\Chunk;
-use Gefud\Generator\Definitions\ClassDefinition;
+use Gefud\Generator\Definitions\MethodDefinition;
 
 class MethodChunk implements Chunk
 {
@@ -15,7 +15,7 @@ class MethodChunk implements Chunk
 EOF;
     private $definition;
 
-    public function __construct(ClassDefinition $definition)
+    public function __construct(MethodDefinition $definition)
     {
         $this->definition = $definition;
     }
